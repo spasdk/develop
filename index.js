@@ -5,7 +5,9 @@
 
 'use strict';
 
-require('./debug');
+// browser logging
+window.debug = require('./debug');
+
 require('./static');
 
 // the application itself

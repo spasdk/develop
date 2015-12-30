@@ -15,10 +15,6 @@ var //host      = require('../app').data.host,
     debug     = {};
 
 
-/** @global */
-module.exports = window.debug = debug;
-
-
 /**
  * Check condition and warn if not match.
  *
@@ -179,3 +175,7 @@ debug.timeEnd = function ( name, title ) {
         throw new Error(__filename + ': no started timer for "' + name + '"');
     }
 };
+
+
+// public
+module.exports = debug;
