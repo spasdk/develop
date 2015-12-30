@@ -8,7 +8,7 @@
 
 'use strict';
 
-var data = require('../app').data;
+var data = require('spa-app').data;
 
 
 // public

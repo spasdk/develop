@@ -8,7 +8,7 @@
 
 'use strict';
 
-var app     = require('../app'),
+var app     = require('spa-app'),
     storage = require('./storage'),
     metrics = require('../../../../config/metrics');
 

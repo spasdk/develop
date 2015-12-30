@@ -5,11 +5,19 @@
 
 'use strict';
 
+var app = require('spa-app');
+
+
+// set global mode
+app.data.debug = true;
+
 // browser logging
 window.debug = require('./debug');
 
 // tools
 require('./static');
+require('./events');
+require('./overrides');
 
 // the application itself
 // "js" directory is resolved by webpack to

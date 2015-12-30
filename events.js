@@ -11,11 +11,10 @@
 /* eslint new-cap: 0 */
 
 var util    = require('util'),
-    app     = require('../app'),
+    app     = require('spa-app'),
     request = require('../request'),
-    dom     = require('../dom'),
-    grid    = require('./grid'),
-    storage = require('./storage');
+    dom     = require('spa-dom'),
+    grid    = require('./grid');
 
 
 // additional top-level key handler
@@ -29,7 +28,7 @@ window.addEventListener('load', function developEventListenerLoad () {
 
     grid.init();
 
-    if ( storage.get('grid.active') ) {
+    if ( localStorage.getItem('grid.active') ) {
         grid.show();
     }
 
@@ -82,7 +81,7 @@ window.addEventListener('keydown', function developEventListenerKeydown ( event 
                 grid.show();
             }
             debug.log('show grid: ' + grid.active, 'red');
-            storage.set('grid.active', grid.active);
+            localStorage.setItem('grid.active', grid.active);
             break;
 
         // numpad 6
@@ -97,14 +96,14 @@ window.addEventListener('keydown', function developEventListenerKeydown ( event 
                 debug.log('SpyJS in this mode is available only on STB devices.', 'red');
             } else {
                 // SpyJS enable/disable
-                if ( !storage.get('spyjs.active') ) {
+                if ( !localStorage.getItem('spyjs.active') ) {
                     // try to "ping" proxy server
                     request.ajax(document.location.protocol + '//' + location.hostname + ':3546', {
                         method: 'get',
                         onload: function () {
                             // proxy seems ready
                             //isSpyJs = true;
-                            storage.set('spyjs.active', true);
+                            localStorage.setItem('spyjs.active', true);
                             debug.log('SpyJS: enable', 'red');
                             debug.log('SpyJS: set proxy to ' + location.hostname + ':' + 3546);
 
@@ -117,7 +116,7 @@ window.addEventListener('keydown', function developEventListenerKeydown ( event 
                     });
                 } else {
                     //isSpyJs = false;
-                    storage.set('spyjs.active', false);
+                    localStorage.setItem('spyjs.active', false);
                     gSTB.ResetWebProxy();
                     debug.log('SpyJS: disable', 'red');
                     location.reload();
@@ -170,13 +169,13 @@ window.addEventListener('keydown', function developEventListenerKeydown ( event 
  */
 function changeScreenDimension ( width, height ) {
     // check if it's necessary
-    if ( Number(storage.get('screen.height')) !== height ) {
+    if ( Number(localStorage.getItem('screen.height')) !== height ) {
         // yes
         debug.log(util.format('switch to %sx%s', width, height), 'red');
 
         // save in case of document reload
-        storage.set('screen.height', height);
-        storage.set('screen.width',  width);
+        localStorage.setItem('screen.height', height);
+        localStorage.setItem('screen.width',  width);
 
         // hide content to avoid raw HTML blinking
         document.body.style.display = 'none';
