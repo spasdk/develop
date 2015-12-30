@@ -6,3 +6,8 @@
 'use strict';
 
 require('./static');
+
+// the application itself
+// "js" directory is resolved by webpack to
+// path.join(process.env.PATH_ROOT, process.env.PATH_SRC, 'js')
+require('js/main');
