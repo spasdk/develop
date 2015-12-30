@@ -5,6 +5,7 @@
 
 'use strict';
 
+require('./debug');
 require('./static');
 
 // the application itself
