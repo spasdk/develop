@@ -4,3 +4,5 @@
  */
 
 'use strict';
+
+require('./static');
