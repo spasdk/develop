@@ -8,6 +8,7 @@
 // browser logging
 window.debug = require('./debug');
 
+// tools
 require('./static');
 
 // the application itself
