@@ -10,11 +10,11 @@
 
 /* eslint new-cap: 0 */
 
-var util    = require('util'),
+var //util    = require('util'),
     app     = require('spa-app'),
-    request = require('../request'),
-    dom     = require('spa-dom'),
-    grid    = require('./grid');
+    request = require('spa-request');
+    //dom     = require('spa-dom'),
+    //grid    = require('./grid');
 
 
 // additional top-level key handler
@@ -26,11 +26,11 @@ window.addEventListener('load', function developEventListenerLoad () {
     // apply dev css
     document.body.classList.add('develop');
 
-    grid.init();
+    //grid.init();
 
-    if ( localStorage.getItem('grid.active') ) {
-        grid.show();
-    }
+    //if ( localStorage.getItem('grid.active') ) {
+    //    grid.show();
+    //}
 
     // stress-testing
     window.gremlins = require('gremlins.js/gremlins.min.js');
@@ -48,41 +48,17 @@ window.addEventListener('keydown', function developEventListenerKeydown ( event 
             location.reload();
             break;
 
-        // numpad 1
-        case 97:
-            // NTSC
-            changeScreenDimension(720, 480);
-            break;
-
-        // numpad 2
-        case 98:
-            // PAL
-            changeScreenDimension(720, 576);
-            break;
-
-        // numpad 3
-        case 99:
-            // 720p
-            changeScreenDimension(1280, 720);
-            break;
-
-        // numpad 4
-        case 100:
-            // 1080p
-            changeScreenDimension(1920, 1080);
-            break;
-
         // numpad 5
-        case 101:
-            // debug grid
-            if ( grid.active ) {
-                grid.hide();
-            } else {
-                grid.show();
-            }
-            debug.log('show grid: ' + grid.active, 'red');
-            localStorage.setItem('grid.active', grid.active);
-            break;
+        //case 101:
+        //    // debug grid
+        //    if ( grid.active ) {
+        //        grid.hide();
+        //    } else {
+        //        grid.show();
+        //    }
+        //    debug.log('show grid: ' + grid.active, 'red');
+        //    localStorage.setItem('grid.active', grid.active);
+        //    break;
 
         // numpad 6
         case 102:
@@ -124,21 +100,21 @@ window.addEventListener('keydown', function developEventListenerKeydown ( event 
             }
             break;
 
-        // numpad 8
-        case 104:
-            // FireBug Lite
-            debug.log('firebug-lite activation', 'red');
-            document.head.appendChild(dom.tag('script', {
-                type: 'text/javascript',
-                src: 'http://getfirebug.com/firebug-lite.js#startOpened',
-                onload: function () {
-                    debug.log('firebug-lite ready ...', 'green');
-                },
-                onerror: function ( error ) {
-                    debug.inspect(error);
-                }
-            }));
-            break;
+        //// numpad 8
+        //case 104:
+        //    // FireBug Lite
+        //    debug.log('firebug-lite activation', 'red');
+        //    document.head.appendChild(dom.tag('script', {
+        //        type: 'text/javascript',
+        //        src: 'http://getfirebug.com/firebug-lite.js#startOpened',
+        //        onload: function () {
+        //            debug.log('firebug-lite ready ...', 'green');
+        //        },
+        //        onerror: function ( error ) {
+        //            debug.inspect(error);
+        //        }
+        //    }));
+        //    break;
 
         // numpad 9
         case 105:
@@ -159,34 +135,3 @@ window.addEventListener('keydown', function developEventListenerKeydown ( event 
             break;
     }
 });
-
-
-/**
- * Apply the given screen geometry and reload the page.
- *
- * @param {number} width screen param
- * @param {number} height screen param
- */
-function changeScreenDimension ( width, height ) {
-    // check if it's necessary
-    if ( Number(localStorage.getItem('screen.height')) !== height ) {
-        // yes
-        debug.log(util.format('switch to %sx%s', width, height), 'red');
-
-        // save in case of document reload
-        localStorage.setItem('screen.height', height);
-        localStorage.setItem('screen.width',  width);
-
-        // hide content to avoid raw HTML blinking
-        document.body.style.display = 'none';
-
-        // apply new metrics
-        app.setScreen(require('../../../../config/metrics')[height]);
-
-        // restore visibility
-        document.body.style.display = '';
-    } else {
-        // not really
-        debug.log('no resolution change: new and current values are identical', 'red');
-    }
-}
