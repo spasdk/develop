@@ -5,12 +5,6 @@
 
 'use strict';
 
-var app = require('spa-app');
-
-
-// set global mode
-app.data.debug = true;
-
 // browser logging
 window.debug = require('./debug');
 
