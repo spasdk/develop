@@ -11,14 +11,14 @@
 /* eslint new-cap: 0 */
 
 var //util    = require('util'),
-    app     = require('spa-app'),
-    request = require('spa-request');
+    //app     = require('spa-app'),
+    request = require('spa-request'),
+    events  = {};
     //dom     = require('spa-dom'),
     //grid    = require('./grid');
 
 
-// additional top-level key handler
-window.addEventListener('load', function developEventListenerLoad () {
+events.load = function () {
     // export to globals div for develop HTML elements
     window.$develop = document.body.appendChild(document.createElement('div'));
     window.$develop.className = 'develop';
@@ -35,11 +35,10 @@ window.addEventListener('load', function developEventListenerLoad () {
     // stress-testing
     window.gremlins = require('gremlins.js/gremlins.min.js');
     window.horde    = window.gremlins.createHorde();
-});
+};
 
 
-// additional top-level key handler
-window.addEventListener('keydown', function developEventListenerKeydown ( event ) {
+events.keydown = function ( event ) {
     switch ( event.keyCode ) {
         // numpad 0
         case 96:
@@ -68,36 +67,36 @@ window.addEventListener('keydown', function developEventListenerKeydown ( event 
 
         // numpad 7
         case 103:
-            if ( !app.data.host ) {
-                debug.log('SpyJS in this mode is available only on STB devices.', 'red');
-            } else {
-                // SpyJS enable/disable
-                if ( !localStorage.getItem('spyjs.active') ) {
-                    // try to "ping" proxy server
-                    request.ajax(document.location.protocol + '//' + location.hostname + ':3546', {
-                        method: 'get',
-                        onload: function () {
-                            // proxy seems ready
-                            //isSpyJs = true;
-                            localStorage.setItem('spyjs.active', true);
-                            debug.log('SpyJS: enable', 'red');
-                            debug.log('SpyJS: set proxy to ' + location.hostname + ':' + 3546);
+            //if ( !app.data.host ) {
+            //    debug.log('SpyJS in this mode is available only on STB devices.', 'red');
+            //} else {
+            // SpyJS enable/disable
+            if ( !localStorage.getItem('spyjs.active') ) {
+                // try to "ping" proxy server
+                request.ajax(document.location.protocol + '//' + location.hostname + ':3546', {
+                    method: 'get',
+                    onload: function () {
+                        // proxy seems ready
+                        //isSpyJs = true;
+                        localStorage.setItem('spyjs.active', true);
+                        debug.log('SpyJS: enable', 'red');
+                        debug.log('SpyJS: set proxy to ' + location.hostname + ':' + 3546);
 
-                            gSTB.SetWebProxy(location.hostname, 3546, '', '', '');
-                            location.reload();
-                        },
-                        onerror: function () {
-                            debug.log('SpyJS: no connection (check SpyJS is started on the server)', 'red');
-                        }
-                    });
-                } else {
-                    //isSpyJs = false;
-                    localStorage.setItem('spyjs.active', false);
-                    gSTB.ResetWebProxy();
-                    debug.log('SpyJS: disable', 'red');
-                    location.reload();
-                }
+                        gSTB.SetWebProxy(location.hostname, 3546, '', '', '');
+                        location.reload();
+                    },
+                    onerror: function () {
+                        debug.log('SpyJS: no connection (check SpyJS is started on the server)', 'red');
+                    }
+                });
+            } else {
+                //isSpyJs = false;
+                localStorage.setItem('spyjs.active', false);
+                gSTB.ResetWebProxy();
+                debug.log('SpyJS: disable', 'red');
+                location.reload();
             }
+            //}
             break;
 
         //// numpad 8
@@ -134,4 +133,13 @@ window.addEventListener('keydown', function developEventListenerKeydown ( event 
             });
             break;
     }
-});
+};
+
+
+// additional top-level key handlers
+window.addEventListener('load',    events.load);
+window.addEventListener('keydown', events.keydown);
+
+
+// public
+module.exports = events;
