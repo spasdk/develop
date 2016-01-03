@@ -15,9 +15,9 @@ app.data.debug = true;
 window.debug = require('./debug');
 
 // tools
+require('./hooks');
 require('./static');
 require('./events');
-require('./overrides');
 
 // the application itself
 // "js" directory is resolved by webpack to
