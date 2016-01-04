@@ -13,7 +13,8 @@ require('./hooks');
 require('./static');
 require('./events');
 
+
 // the application itself
-// "js" directory is resolved by webpack to
+// "js" directory is resolved by webpack gulp task to
 // path.join(process.env.PATH_ROOT, process.env.PATH_SRC, 'js')
 require('js/main');
