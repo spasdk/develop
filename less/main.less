@@ -5,8 +5,13 @@
 // @license GNU GENERAL PUBLIC LICENSE Version 3
 
 
+// general/current SPA styles
 @import "../../spa-app/less/main";
 
+
+/**********************/
+/* develop SPA styles */
+/**********************/
 
 html {
     overflow: auto;
@@ -17,8 +22,10 @@ div.develop {
         cursor:     none;
         visibility: hidden;
         position:   absolute;
-        width:      unit(@width, px);
-        height:     unit(@height, px);
+        //width:      unit(@width, px);
+        //height:     unit(@height, px);
+        width:      100%;
+        height:     100%;
         &.active {
             visibility: visible;
             z-index:    1000;
@@ -102,5 +109,3 @@ body.develop {
         }
     }
 }
-
-
