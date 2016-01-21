@@ -10,11 +10,11 @@ window.debug = require('./debug');
 
 // tools
 require('./hooks');
-require('./static');
+//require('./static');
 require('./events');
 
 
 // the application itself
 // "js" directory is resolved by webpack gulp task to
 // path.join(process.env.PATH_ROOT, process.env.PATH_SRC, 'js')
-require('js/main');
+//require('js/main');
