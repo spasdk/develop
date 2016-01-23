@@ -10,7 +10,7 @@ window.debug = require('./debug');
 
 // tools
 require('./hooks');
-//require('./static');
+require('./static');
 require('./events');
 
 

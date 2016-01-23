@@ -8,15 +8,15 @@
 
 'use strict';
 
-var tag    = require('spa-dom').tag,
-    config = require('../../config/static');
+var tag    = require('spa-dom').tag/*,
+    config = require('../../config/static')*/;
 
 
 // livereload activation
-if ( config.livereload ) {
+//if ( config.livereload ) {
     // load external script
-    document.head.appendChild(tag('script', {
-        type: 'text/javascript',
-        src: '//' + location.hostname + ':' + (config.livereload === true ? 35729 : config.livereload) + '/livereload.js'
-    }));
-}
+document.head.appendChild(tag('script', {
+    type: 'text/javascript',
+    src: '/node_modules/livereload-js/dist/livereload.js?host=' + location.hostname + '&port=' + CONFIG.default.port
+}));
+//}
