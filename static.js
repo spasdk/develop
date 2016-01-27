@@ -17,6 +17,6 @@ var tag    = require('spa-dom').tag/*,
     // load external script
 document.head.appendChild(tag('script', {
     type: 'text/javascript',
-    src: '/node_modules/livereload-js/dist/livereload.js?host=' + location.hostname + '&port=' + CONFIG.default.port
+    src: '/node_modules/livereload-js/dist/livereload.js?host=' + location.hostname + '&port=' + LIVERELOAD.port
 }));
 //}
