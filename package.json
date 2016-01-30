@@ -13,8 +13,8 @@
     },
     "dependencies": {
         "gremlins.js": "marmelab/gremlins.js",
-        "spa-dom": "1.*.*",
-        "spa-request": "1.*.*"
+        "spa-dom": "spasdk/dom",
+        "spa-request": "spasdk/request"
     },
     "keywords": [
         "spa",
