@@ -19,6 +19,9 @@ var //util    = require('util'),
 
 
 events.load = function () {
+    // app instance
+    window.app = require('spa-app');
+
     // export to globals div for develop HTML elements
     window.$develop = document.body.appendChild(document.createElement('div'));
     window.$develop.className = 'develop';
