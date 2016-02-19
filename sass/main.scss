@@ -1,9 +1,7 @@
 // @author Stanislav Kalashnik <darkpark.main@gmail.com>
 // @license GNU GENERAL PUBLIC LICENSE Version 3
 
-/**********************/
-/* develop SPA styles */
-/**********************/
+/* spa-develop: general */
 
 html {
     //overflow: auto;
@@ -27,8 +25,8 @@ div.develop {
 
 // can be toggled by numpad 9
 body.develop {
-    outline:        1px dashed #005000;
-    outline-offset: 1px;
+    //outline:        1px dashed #005000;
+    //outline-offset: 1px;
 
     // outline all divs
     div:not(.component) {
