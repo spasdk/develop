@@ -74,7 +74,13 @@ events.keydown = function ( event ) {
             //    debug.log('SpyJS in this mode is available only on STB devices.', 'red');
             //} else {
             // SpyJS enable/disable
-            if ( !localStorage.getItem('spyjs.active') ) {
+            if ( localStorage.getItem('spyjs.active') ) {
+                //isSpyJs = false;
+                localStorage.setItem('spyjs.active', false);
+                gSTB.ResetWebProxy();
+                debug.log('SpyJS: disable', 'red');
+                location.reload();
+            } else {
                 // try to "ping" proxy server
                 request.ajax(document.location.protocol + '//' + location.hostname + ':3546', {
                     method: 'get',
@@ -92,12 +98,6 @@ events.keydown = function ( event ) {
                         debug.log('SpyJS: no connection (check SpyJS is started on the server)', 'red');
                     }
                 });
-            } else {
-                //isSpyJs = false;
-                localStorage.setItem('spyjs.active', false);
-                gSTB.ResetWebProxy();
-                debug.log('SpyJS: disable', 'red');
-                location.reload();
             }
             //}
             break;
