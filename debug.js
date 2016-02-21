@@ -6,9 +6,10 @@
  * @license GNU GENERAL PUBLIC LICENSE Version 3
  */
 
-'use strict';
-
+/* eslint no-path-concat: 0 */
 /* eslint new-cap: 0 */
+
+'use strict';
 
 var //host      = require('../app').data.host,
     timeMarks = {},  // storage for timers (debug.time, debug.timeEnd)
