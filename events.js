@@ -12,15 +12,30 @@
 
 var //util    = require('util'),
     //app     = require('spa-app'),
+    Wamp    = require('cjs-wamp'),
     request = require('spa-request'),
+    parse   = require('cjs-parse-query'),
     events  = {};
     //dom     = require('spa-dom'),
     //grid    = require('./grid');
 
 
 events.load = function () {
+    var port = parse(document.location.search.substring(1)).port;
+
     // app instance
     window.app = require('spa-app');
+
+    if ( port ) {
+        //window.app.wamp = new Wamp(
+        //    new WebSocket('ws://localhost:' + port + '/target')
+        //);
+		//
+        //// ready
+        //window.app.wamp.socket.onopen = function () {
+        //    console.log('wamp is ready!');
+        //};
+    }
 
     // export to globals div for develop HTML elements
     window.$develop = document.body.appendChild(document.createElement('div'));
