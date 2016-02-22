@@ -12,7 +12,6 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "cjs-parse-query": "1.*.*",
         "cjs-wamp": "cjssdk/wamp",
         "gremlins.js": "marmelab/gremlins.js",
         "livereload-js": "2.*.*",
