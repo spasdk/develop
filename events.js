@@ -24,10 +24,10 @@ events.load = function () {
     // app instance
     window.app = app = require('spa-app');
 
-    if ( app.data.query.wampPort ) {
+    if ( app.query.wampPort ) {
         console.log('connect to WAMP server');
         window.app.wamp = new Wamp(
-            new WebSocket('ws://' + (app.data.query.wampHost || 'localhost') + ':' + app.data.query.wampPort + '/target')
+            new WebSocket('ws://' + (app.data.query.wampHost || 'localhost') + ':' + app.query.wampPort + '/target')
         );
 
         // ready
