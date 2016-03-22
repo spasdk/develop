@@ -27,7 +27,7 @@ events.load = function () {
     if ( app.query.wampPort ) {
         console.log('connect to WAMP server');
         window.app.wamp = new Wamp(
-            new WebSocket('ws://' + (app.query.wampHost || 'localhost') + ':' + app.query.wampPort + '/target')
+            new WebSocket('ws://' + (app.query.wampHost || location.hostname) + ':' + app.query.wampPort + '/target')
         );
 
         // ready
