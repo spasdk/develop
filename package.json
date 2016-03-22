@@ -12,11 +12,11 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "cjs-wamp": "cjssdk/wamp",
         "gremlins.js": "marmelab/gremlins.js",
         "livereload-js": "2.*.*",
         "spa-dom": "spasdk/dom",
-        "spa-request": "spasdk/request"
+        "spa-request": "spasdk/request",
+        "spa-wamp": "spasdk/wamp"
     },
     "devDependencies": {
         "spa-eslint-config": "spasdk/eslint-config"

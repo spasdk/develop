@@ -12,7 +12,7 @@
 
 var //util    = require('util'),
     //app     = require('spa-app'),
-    Wamp    = require('cjs-wamp'),
+    Wamp    = require('spa-wamp'),
     request = require('spa-request'),
     events  = {},
     app;
@@ -25,15 +25,16 @@ events.load = function () {
     window.app = app = require('spa-app');
 
     if ( app.query.wampPort ) {
-        console.log('connect to WAMP server');
-        window.app.wamp = new Wamp(
-            new WebSocket('ws://' + (app.query.wampHost || location.hostname) + ':' + app.query.wampPort + '/target')
+        //console.log('connect to WAMP server');
+        window.app.wampTarget = new Wamp(
+            //new WebSocket('ws://' + (app.query.wampHost || location.hostname) + ':' + app.query.wampPort + '/target')
+            'ws://' + (app.query.wampHost || location.hostname) + ':' + app.query.wampPort + '/target'
         );
 
         // ready
-        window.app.wamp.socket.onopen = function () {
+        /*window.app.wamp.socket.onopen = function () {
             console.log('wamp is ready!');
-        };
+        };*/
     }
 
     // export to globals div for develop HTML elements
